@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
+    'app_tenet1',
 ]
 
 MIDDLEWARE = [
@@ -86,7 +87,7 @@ DATABASES = {
     }
 }
 
-DATABASE_ROUTERS = ['core.tenant_database_router.TenantRouter']
+DATABASE_ROUTERS = ['core.DBRoutes.DBRoutes']
 
 
 # Password validation

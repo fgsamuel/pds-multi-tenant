@@ -1,4 +1,4 @@
-from indexOutOfBound.core.middlewares import TenantMiddleware
+# from indexOutOfBound.core.middlewares import TenantMiddleware
 
 
 class TenantRouter:
