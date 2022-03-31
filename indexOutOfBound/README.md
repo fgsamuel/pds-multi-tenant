@@ -12,7 +12,8 @@ A ideia é criar uma aplicação multi-tenant utilizando a estratégia de um ban
 - [ ] Mover a lógica de criação do banco para um arquivo separado
 - [x] Criar um signal para acionar a criação do banco ao salvar o tenant
 - [ ] Salvar a conexão com o banco como url (dj_database_url)
-- [ ] Mover a classe `Database` do `settings` para um arquivo separado
+- [x] Mover a classe `Database` do `settings` para um arquivo separado
 - [ ] Verificar a utilização do `dramatiq` para gestão de filas
 - [ ] Mudar a estratégia de alteração de tenant por subdomínio (?)
 - [ ] Lançar erro 404 quando o tenant não for encontrado
+- [ ] Remover o atributo `cache` da classe Database
