@@ -7,10 +7,10 @@ A ideia é criar uma aplicação multi-tenant utilizando a estratégia de um ban
 ## O que falta fazer
 
 - [ ] testes, testes e mais testes
-- [ ] Documentação
+- [x] Documentação
 - [ ] Criar duas instâncias separadas de Admin. Um para o tenant e outro para backoffice geral
 - [ ] Mover a lógica de criação do banco para um arquivo separado
-- [ ] Criar um middleware para acionar a criação do banco ao salvar o tenant
+- [x] Criar um signal para acionar a criação do banco ao salvar o tenant
 - [ ] Salvar a conexão com o banco como url (dj_database_url)
 - [ ] Mover a classe `Database` do `settings` para um arquivo separado
 - [ ] Verificar a utilização do `dramatiq` para gestão de filas
