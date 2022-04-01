@@ -4,6 +4,7 @@ from core.models import Tenant
 
 THREAD_LOCAL = threading.local()
 
+
 class TenantMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
@@ -37,3 +38,7 @@ def get_current_db_name():
 
 def set_db_for_router(db):
     setattr(THREAD_LOCAL, "DB", db)
+
+# hb.com.br/backoffice -> Tenant
+# samuel.com.br/admin -> Usuário
+

@@ -1,4 +1,4 @@
-from django.conf import settings
+import dj_database_url
 
 
 class Database(dict):
@@ -6,10 +6,11 @@ class Database(dict):
 
     def __getitem__(self, item):
         if item not in self.cache:
-            self.cache[item] = {
-                'ENGINE': 'django.db.backends.sqlite3',
-                'NAME': str(settings.BASE_DIR / f'{item}.db.sqlite3'),
-            }
+            try:
+                self.cache[item] = dj_database_url.config(default=item)
+            except:
+                self.cache[item] = dj_database_url.config(default="sqlite:///default.com.br.sqlite3")
+
         return self.cache[item]
 
     def __contains__(self, item):
