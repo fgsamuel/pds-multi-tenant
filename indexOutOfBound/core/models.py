@@ -3,7 +3,7 @@ from django.db import models
 
 class Tenant(models.Model):
     name = models.CharField(max_length=100)
-    domain_url = models.URLField()
+    domain_url = models.CharField(max_length=200)
     database_url = models.CharField(max_length=200, unique=True)
 
     DEFAULT_DB = "default"
@@ -12,15 +12,9 @@ class Tenant(models.Model):
         return self.name
 
     @classmethod
-    def db_for(cls, name):
-        return Tenant.objects.using(cls.DEFAULT_DB).get(name=name).database_url
+    def db_for(cls, hostname):
+        return Tenant.objects.using(cls.DEFAULT_DB).get(domain_url=hostname).database_url
 
     @classmethod
     def exists(cls, name):
         return Tenant.objects.using(cls.DEFAULT_DB).filter(name=name).exists()
-
-'''
-Criar o tenant
-usar o default
-usar um cara que não existe
-'''

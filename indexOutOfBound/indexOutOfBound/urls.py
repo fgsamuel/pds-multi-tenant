@@ -17,10 +17,8 @@ from django.contrib import admin
 from django.urls import path
 
 from core import views
-from core.admin import tenant_admin_site
 
 urlpatterns = [
-    path('backoffice/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('', views.tenant_home),
-    path('admin/', tenant_admin_site.urls),
 ]

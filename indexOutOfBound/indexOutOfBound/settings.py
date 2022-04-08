@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'core.middlewares.TenantMiddleware',
+    'core.middlewares.SubdomainTenantMiddleware',
 ]
 
 ROOT_URLCONF = 'indexOutOfBound.urls'
@@ -83,7 +83,7 @@ DATABASES = Database()
 
 DATABASE_BACKOFFICE = dj_database_url.parse("sqlite:///db_backoffice.sqlite")
 
-#DATABASE_ROUTERS = ['core.dbrouter.TenantRouter']
+DATABASE_ROUTERS = ['core.dbrouter.MultiDatabaseTenantRouter']
 
 
 # Password validation
@@ -126,3 +126,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+PUBLIC_SUBDOMAIN = 'localhost'

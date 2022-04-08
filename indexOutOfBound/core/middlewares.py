@@ -38,7 +38,7 @@ class PathTenantMiddleware(BaseTenantMiddleware):
 class SubdomainTenantMiddleware(BaseTenantMiddleware):
     @staticmethod
     def tenant_from_request(request):
-        ...
+        return request.get_host().split(':')[0]
 
 
 class DomainTenantMiddleware(BaseTenantMiddleware):

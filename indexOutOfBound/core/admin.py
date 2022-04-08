@@ -9,4 +9,4 @@ admin.site.register(Tenant)
 class TenantAdminSite(AdminSite):
     ...
 
-tenant_admin_site = TenantAdminSite(name="Tenant Admin")
+# tenant_admin_site = TenantAdminSite(name="Tenant Admin")

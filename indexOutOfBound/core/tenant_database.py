@@ -6,7 +6,7 @@ class Database(dict):
     cache = {}
 
     def __getitem__(self, tenant):
-        if tenant == 'default':
+        if tenant == settings.PUBLIC_SUBDOMAIN:
             return settings.DATABASE_BACKOFFICE
         if tenant not in self.cache:
             from core.models import Tenant
