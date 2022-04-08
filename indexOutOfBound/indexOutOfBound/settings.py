@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import dj_database_url
+
 from core.tenant_database import Database
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -79,7 +81,9 @@ WSGI_APPLICATION = 'indexOutOfBound.wsgi.application'
 
 DATABASES = Database()
 
-DATABASE_ROUTERS = ['core.dbrouter.TenantRouter']
+DATABASE_BACKOFFICE = dj_database_url.parse("sqlite:///db_backoffice.sqlite")
+
+#DATABASE_ROUTERS = ['core.dbrouter.TenantRouter']
 
 
 # Password validation
