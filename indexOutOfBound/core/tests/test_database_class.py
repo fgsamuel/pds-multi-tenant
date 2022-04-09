@@ -1,29 +1,20 @@
-import pdb
 import pytest
 
 from django.conf import settings
-from django.db import DatabaseError
 
 from core.models import Tenant
 from core.tenant_database import Database
 
 
-def test_return_dict_from_key():
+def test_return_dict_from_key(db):
     database = Database()
-    assert type(database['teste']) == dict
+    assert isinstance((database['default']), dict)
 
 
-def test_cache_dict_from_key():
+def test_cache_dict_from_key(db):
     database = Database()
-    database['teste']['db_name'] = 'teste'
-    assert database['teste']['db_name'] == 'teste'
-
-
-def test_class_always_contains_keys():
-    database = Database()
-    assert 'teste' in database
-
-# -----------------------------------------------------------------------------
+    database['default']['db_name'] = 'teste'
+    assert database['default']['db_name'] == 'teste'
 
 
 def test_get_backoffice_database_config():
@@ -37,7 +28,15 @@ def test_get_inexistent_database(db):
         database['inexistent']
 
 
-def test_get_tenant(db):
-    Tenant.objects.using('default').create(name='teste', database_url='sqlite:///teste.sqlite3')
+def test_get_tenant_connection(db):
+    Tenant.objects.using('default').create(name='Tenant 01', domain_url='tenant01.com.br',
+                                           database_url='sqlite:///teste.sqlite3')
     database = Database()
-    assert isinstance(database['teste'], dict)
+    assert database['tenant01.com.br']['NAME'] == 'teste.sqlite3'
+
+
+def test_default_equal_subdomain(db):
+    settings.DATABASE_BACKOFFICE = {'NAME': 'teste.sqlite3'}
+    settings.PUBLIC_SUBDOMAIN = 'example.com'
+    database = Database()
+    assert database["default"] == database["example.com"]
